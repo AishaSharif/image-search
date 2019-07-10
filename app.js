@@ -15,13 +15,19 @@ function formSubmitted(event){
   const searchTerm = input.value;
   
   search(searchTerm)
-    .then(displayImages);
+    .then(displayImages)
+    .then(() => {
+      loadingImage.style.display = 'none';
+    });
+}
+
+function searchSetup() {
+  imageSection.innerHTML = '';
+  loadingImage.style.display = '';
 }
  
 function search(searchTerm) {
   const url = `${API_URL}&query=${searchTerm}`;  
-  imageSection.innerHTML = '';
-  loadingImage.style.display = '';
 
   return fetch(url)
     .then(response => response.json())
@@ -30,6 +36,7 @@ function search(searchTerm) {
     });
 }
 
+
 function displayImages(images) {
   images.forEach(image => {
     console.log(image.urls.regular);
@@ -37,5 +44,4 @@ function displayImages(images) {
     imageElement.src = image.urls.regular;
     imageSection.appendChild(imageElement);
   });
-  loadingImage.style.display = 'none';
 }
