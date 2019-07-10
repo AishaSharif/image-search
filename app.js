@@ -14,6 +14,8 @@ function formSubmitted(event){
 
   const searchTerm = input.value;
   
+  searchSetup();
+  
   search(searchTerm)
     .then(displayImages)
     .then(() => {

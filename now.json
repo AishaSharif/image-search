@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "js-image-search",
+  "builds": [
+    {
+      "src": "*",
+      "use": "@now/static"
+    }
+  ]
+}
